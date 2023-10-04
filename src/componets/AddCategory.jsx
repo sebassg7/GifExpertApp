@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export const AddCategory = () => {
+export const AddCategory = ({setCategories}) => {
 
-const [inputValue, setInputValue] = useState('Aqui esta el estado inicial: One Punch');
+const [inputValue, setInputValue] = useState('');
 
 const onInputChange = ({target}) => {
 
@@ -11,11 +11,17 @@ const onInputChange = ({target}) => {
 
 const onSubmit = (event) => {
     event.preventDefault();
-    console.log(inputValue);
+    // if(inputValue.trim().length <1) return;
+
+    inputValue.trim().length < 1 ? null:
+
+    setCategories((categories) => [inputValue,...categories] );
+
+    setInputValue('');
 };
 
   return (
-    <form onSubmit={(event) => onSubmit(event)}>
+    <form onSubmit={onSubmit}>
 
     <input 
     type="text"
@@ -27,4 +33,4 @@ const onSubmit = (event) => {
     </form>
     
   )
-}
+};
