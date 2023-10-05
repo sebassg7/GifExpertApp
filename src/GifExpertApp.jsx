@@ -10,7 +10,11 @@ export const GifExpertApp = () => {
     
     const onAddCategory = (newCategory) => {
         
-        setCategories([newCategory,...categories]);
+        // if(categories.includes(newCategory)) return;
+
+        if (categories.map(valor => valor.toLowerCase()).includes(newCategory.toLowerCase()))return;
+
+        setCategories([newCategory,...categories]);        
     };
 
     return (
